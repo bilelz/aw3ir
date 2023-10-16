@@ -11,24 +11,139 @@
     <!-- Place favicon.ico in the root directory -->
 
     <style>
-      body {
-        background-color: #e9ebee;
-        font-family: system, -apple-system, ".SFNSText-Regular", "San Francisco",
-          "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", sans-serif;
-        font-size: 16px;
-        margin: 0 auto;
-        max-width: 800px;
+      label {
+    width: 150px;
+    display: inline-block;
+  }
+  input {
+    width: 250px;
+    padding: 6px 12px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    font-size: 1rem;
+    box-sizing: border-box; 
+    box-shadow: 0 2px 1px -1px #0003, 0 1px 1px #00000024, 0 1px 3px #0000001f;
+    padding: 6px 12px;
+
+    .btn-primary {
+        border-radius: 5px;
+        padding: 6px 12px;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        color: #fff;
+        cursor: pointer;
+        text-decoration: none;
       }
+    
+  } 
+   form:invalid input[type="submit"] {
+        background-color: blue;
+      }
+      input:invalid + .icon-ok {
+        display: none;
+      }
+
+      
     </style>
 
-    <!-- Code à dé-commenter si besoin de fichier CSS ou JS -->
-    <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="js/main.js"></script>-->
+    <!-- Code à dé-comment si besoin de fichier CSS ou JS -->
+    <link rel="stylesheet" href="style.css">
+    <script src="js/main.js"></script>
+    window.onload = () => { // https://developer.mozilla.org/fr/docs/Web/API/Window/load_event
+    const paramsString = document.location.search; // récupérer des données envoyées par le formulaire
+    const searchParams = new URLSearchParams(paramsString); // https://developer.mozilla.org/fr/docs/Web/API/URLSearchParams
+  
+    // Iterating the search parameters
+    for (const param of searchParams) {
+      console.log(param);
+  
+      const elementId = param[0];
+      const elementValue = param[1];
+      const element = document.getElementById(elementId);
+      
+      if (element !== null) {
+        element.textContent = elementValue;
+      }
+      if (param[0] === "address") {
+         element.href = `https://www.google.com/maps/search/?api=1&query=${elementValue}`;
+      } else if (param[0] === "email") {
+         element.href = `mailto:${elementValue}?subject=Hello!&body=What's up?`;
+      }
+    }
+    if (param[0] === "address") {
+      const addressValue = param[1];
+      element.href = `https://www.google.com/maps/search/?api=1&query=${addressValue}`;
+    }
+    if (param[0] === "email") {
+      const emailValue = param[1];
+      element.href = `mailto:${emailValue}?subject=Hello!&body=What's up?`;
+    }
+  };
   </head>
-  <body>
-    <h1>tp2</h1>
-    <!-- Add your site or application content here -->
-    <p>Hello world! This is HTML5 Boilerplate.</p>
-    <img src="../galilee.png" alt="Logo Galilee" />
-  </body>
+  <form action="action.html" method="get">
+        <h1>Formulaire TP2</h1>
+         <div>
+            <p>
+                <label for="firstname">Prénom</label>
+                <input
+                  type="text"
+                  name="firstname"
+                  minlength="2"
+                  maxlength="20"
+                  required
+                />
+                <span class="icon-ok">✔</span>
+              </p>
+              <p>
+                <label for="name">Nom</label>
+                <input
+                  type="text"
+                  name="name"
+                  minlength="2"
+                  maxlength="20"
+                  required
+                />
+                <span class="icon-ok">✔</span>
+              </p>
+             
+              <p>
+                <label for="birthday">Date de naissance</label>
+                <input
+                  type="date"
+                  name="birthday"
+                  minlength="2"
+                  maxlength="20"
+                  required
+                />
+                <span class="icon-ok">✔</span>
+              </p>
+              <p>
+                <label for="adress">Adresse</label>
+                <input
+                  type="text"
+              
+                  minlength="2"
+                  maxlength="20"
+                  required
+                />
+                <span class="icon-ok">✔</span>
+              </p>
+              <p>
+                <label for="email">email</label>
+                <input
+                  type="email"
+                  minlength="2"
+                  maxlength="20"
+                  required
+                />
+                <span class="icon-ok">✔</span>
+              </p>
+              
+              <input type="submit"/>
+             
+         </div>
+        
+         
+   
+    </form>
 </html>
