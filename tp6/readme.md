@@ -192,8 +192,8 @@ npm install --save git+https://git@github.com/erikflowers/weather-icons.git
 Dans le fichier `styles.css` ajouter une référence vers les fichiers CSS de bootstrap et weather-icons
 
 ```css
-@import "~bootstrap/dist/css/bootstrap.min.css";
-@import "~weather-icons/css/weather-icons.min.css";
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "weather-icons/css/weather-icons.min.css";
 ```
 <div align="center">tp6\meteo-angular\src\styles.css</div>
 
